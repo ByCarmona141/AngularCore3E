@@ -1,0 +1,12 @@
+<app-create-template [loading]="loading" [register]="register" [form]="form" [modal]="modal" title="systemLog"
+                     (submit)="submit($event)" (cancel)="return()">
+  <app-input-template [form]="form" [data]="table"></app-input-template>
+      <app-input-template [form]="form" [data]="tuple"></app-input-template>
+      <app-input-template [form]="form" [data]="date"></app-input-template>
+      <app-input-template [form]="form" [data]="dataForm"></app-input-template>
+      <app-input-template [form]="form" [data]="idSystemUser"></app-input-template>
+      <app-input-template [form]="form" [data]="idSystemAction"></app-input-template>
+      <app-input-template [form]="form" [data]="ipAddress"></app-input-template>
+      <app-input-template [form]="form" [data]="agent"></app-input-template>
+      <app-input-template [form]="form" [data]="formForm"></app-input-template>
+</app-create-template>

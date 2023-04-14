@@ -1,0 +1,31 @@
+<form class="form-horizontal" autocomplete="off" [formGroup]="form" (keydown.enter)="submitWithEnterEvent()">
+  <section [class.card]="!modal" class="animated fadeIn">
+    <header [class.card-header]="!modal" [class.modal-header]="modal">
+      <div class="card-actions">
+        <a href="#" class="card-action card-action-toggle" data-card-toggle=""></a>
+      </div>
+      <h3 class="card-title">{{ create ? 'Creación' : 'Actualización' }} de {{ title }}</h3>
+      <h4 *ngIf="!create">Registro {{ id }}</h4>
+    </header>
+    <div *ngIf="loading">
+      <div class="col text-center animated fadeIn fast">
+        <i class="fa fa-spinner fa-5x fa-spin mt-5 mb-5"></i>
+      </div>
+    </div>
+    <div [class.card-body]="!modal" [class.modal-body]="modal" *ngIf="!loading">
+      <ng-content></ng-content>
+    </div>
+    <div [class.card-footer]="!modal" [class.modal-footer]="modal">
+      <div class="row justify-content-center">
+        <button type="button" class="btn btn-primary" [disabled]="register" (click)="submitEvent()">
+          <i class="fa " [ngClass]="{ 'fa-save' : !register, 'fa-spinner fa-spin' : register }"></i>
+          Guardar
+        </button>
+        <button type="reset" class="btn btn-danger ml-2" [disabled]="register" (click)="cancelEvent()">
+          <i class="fa fa-window-close"></i> Cancelar
+        </button>
+      </div>
+    </div>
+  </section>
+</form>
+

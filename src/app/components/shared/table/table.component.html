@@ -1,0 +1,12 @@
+<table datatable
+       [dtOptions]="dtOptions"
+       [dtTrigger]="dtTrigger"
+       class="table table-bordered table-striped datatable table-xs row-border hover" width="100%">
+  <thead>
+  <tr>
+    <th *ngFor="let field of fields">
+      {{ field }}
+    </th>
+  </tr>
+  </thead>
+</table>

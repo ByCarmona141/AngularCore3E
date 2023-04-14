@@ -1,0 +1,8 @@
+<app-create-template [loading]="loading" [register]="register" [form]="form" [modal]="modal" title="systemPrivilegesUserRole"
+                     [create]="false" [id]="id" (submit)="submit($event)" (cancel)="return()">
+  <app-input-template [form]="form" [data]="idSystemPrivileges"></app-input-template>
+        <app-input-template [form]="form" [data]="objectSource"></app-input-template>
+        <app-input-template [form]="form" [data]="objectTupla"></app-input-template>
+        <app-input-template [form]="form" [data]="active"></app-input-template>
+        <app-input-template [form]="form" [data]="objetcAccess"></app-input-template>
+</app-create-template>

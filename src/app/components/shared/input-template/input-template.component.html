@@ -1,0 +1,84 @@
+<div class="form-group row" [formGroup]="form">
+  <label *ngIf="data.label != ''" class="col col-form-label col-md-2"
+         [ngClass]="{ 'text-success': valid(data.field),
+                          'text-danger': noValid(data.field) }">
+    {{ data.label }}: <font color="red" *ngIf="isRequired(data.field)">*</font></label>
+  <div class="col-12 col-md-10">
+    <div [ngSwitch]="data.type">
+      <ng-container *ngSwitchCase="'select'" [ngTemplateOutlet]="select"></ng-container>
+      <ng-container *ngSwitchCase="'date'" [ngTemplateOutlet]="date"></ng-container>
+      <ng-container *ngSwitchCase="'file'" [ngTemplateOutlet]="file"></ng-container>
+      <ng-container *ngSwitchCase="'editor'" [ngTemplateOutlet]="editor"></ng-container>
+      <ng-container *ngSwitchDefault [ngTemplateOutlet]="input"></ng-container>
+    </div>
+    <small *ngIf="noValid(data.field)" class="text-danger">
+      {{ data.message }}
+    </small>
+  </div>
+
+
+  <ng-template #select>
+    <div class="row">
+      <div [class.col-11]="add" [class.col-12]="!add">
+        <ng-select [formControlName]="data.field"
+                   [multiple]="multiple"
+                   [readonly]="readonly"
+                   [ngClass]="{ 'is-valid': valid(data.field),
+                            'is-invalid': noValid(data.field) }"
+                   [placeholder]="emptyMessage">
+          <ng-option *ngFor="let item of options" [value]="item[0]">
+            <i *ngIf="data.icon" class="{{ item[1] }}"></i>
+            {{ item[1] }}
+          </ng-option>
+        </ng-select>
+      </div>
+
+      <div *ngIf="add" class="col-1" align="center">
+        <button type="button" class="btn btn-success btn-sm" (click)="openModal()"><i class="fa fa-plus"></i></button>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #input>
+    <input class="form-control"
+           [type]="data.type"
+           [readonly]="readonly"
+           [placeholder]="data.label"
+           [formControlName]="data.field"
+           [ngClass]="{ 'is-valid': valid(data.field),
+                            'is-invalid': noValid(data.field) }">
+  </ng-template>
+
+  <ng-template #file>
+    <input class="form-control"
+           [type]="data.type"
+           [readonly]="readonly"
+           [placeholder]="data.label"
+           [ngClass]="{ 'is-valid': valid(data.field),
+                            'is-invalid': noValid(data.field) }"
+           (change)="onFileChange($event)"
+           permitidos>
+  </ng-template>
+
+  <ng-template #date>
+    <div class="input-group">
+      <input class="form-control"
+             #d="ngbDatepicker"
+             ngbDatepicker
+             [placeholder]="data.label"
+             [readonly]="readonly"
+             [formControlName]="data.field"
+             [ngClass]="{ 'is-valid': valid(data.field),
+                            'is-invalid': noValid(data.field) }">
+      <div class="input-group-append">
+                  <span class="input-group-text" (click)="d.toggle()">
+                    <i class="fa fa-calendar"></i>
+                  </span>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template #editor>
+    <app-tinymce [formControlName]="data.field"></app-tinymce>
+  </ng-template>
+</div>
+

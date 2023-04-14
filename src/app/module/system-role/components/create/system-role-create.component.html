@@ -1,0 +1,5 @@
+<app-create-template [loading]="loading" [register]="register" [form]="form" [modal]="modal" title="systemRole"
+                     (submit)="submit($event)" (cancel)="return()">
+  <app-input-template [form]="form" [data]="name"></app-input-template>
+      <app-input-template [form]="form" [data]="active"></app-input-template>
+</app-create-template>

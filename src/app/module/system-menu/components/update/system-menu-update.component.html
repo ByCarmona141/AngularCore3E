@@ -1,0 +1,11 @@
+<app-create-template [loading]="loading" [register]="register" [form]="form" [modal]="modal" title="systemMenu"
+                     [create]="false" [id]="id" (submit)="submit($event)" (cancel)="return()">
+  <app-input-template [form]="form" [data]="idSystemTypeElement"></app-input-template>
+  <app-input-template [form]="form" [data]="name"></app-input-template>
+  <app-input-template [form]="form" [data]="description"></app-input-template>
+  <app-input-template [form]="form" [data]="href"></app-input-template>
+  <app-input-template [form]="form" [data]="idSystemIcon"></app-input-template>
+  <app-input-template [form]="form" [data]="category"></app-input-template>
+  <app-input-template [form]="form" [data]="priority"></app-input-template>
+  <app-input-template [form]="form" [data]="roles"></app-input-template>
+</app-create-template>

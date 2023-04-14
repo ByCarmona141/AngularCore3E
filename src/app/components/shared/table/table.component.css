@@ -1,0 +1,18 @@
+a {
+  font: bold 11px Arial !important;
+  text-decoration: none !important;
+  background-color: #EEEEEE !important;
+  color: #333333 !important;
+  padding: 2px 6px 2px 6px !important;
+  border-top: 1px solid #CCCCCC !important;
+  border-right: 1px solid #333333 !important;
+  border-bottom: 1px solid #333333 !important;
+  border-left: 1px solid #CCCCCC !important;
+}
+
+.btn-xs {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.5rem;
+  line-height: 1.5;
+  border-radius: 5px;
+}

@@ -1,0 +1,31 @@
+<section class="card animated fadeIn">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-2 text-left">
+        <button class="btn btn-success" routerLink="create" *ngIf="privilege.create">
+          <span>
+            <i class="fa fa-plus"></i> Agregar
+          </span>
+        </button>
+      </div>
+      <div class="col-md-6 text-left">
+        <button class="btn btn-warning" *ngIf="privilege.update" [disabled]="selected.length == 0">
+          <span>
+            <i class="fa fa-pencil"></i> Editar
+          </span>
+        </button>
+        <button class="btn btn-danger" *ngIf="privilege.delete" [disabled]="selected.length == 0">
+          <span>
+            <i class="fa fa-trash"></i> Eliminar
+          </span>
+        </button>
+      </div>
+    </div>
+      <app-table #table
+                 [serveSource]="serveSource"
+                 [serveFunction]="serverFunction"
+                 [params]="params"
+                 [fields]="fields">
+    </app-table>
+  </div>
+</section>

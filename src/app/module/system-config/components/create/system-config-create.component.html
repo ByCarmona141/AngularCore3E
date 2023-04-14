@@ -1,0 +1,8 @@
+<app-create-template [loading]="loading" [register]="register" [form]="form" [modal]="modal" title="systemConfig"
+                     (submit)="submit($event)" (cancel)="return()">
+  <app-input-template [form]="form" [data]="name"></app-input-template>
+      <app-input-template [form]="form" [data]="value"></app-input-template>
+      <app-input-template [form]="form" [data]="tipeofHTML"></app-input-template>
+      <app-input-template [form]="form" [data]="category"></app-input-template>
+      <app-input-template [form]="form" [data]="configKey"></app-input-template>
+</app-create-template>

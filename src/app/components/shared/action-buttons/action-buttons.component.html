@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-md-2 text-left">
+    <button class="btn btn-success" (click)="create()" *ngIf="privileges.includes(1)">
+          <span>
+            <i class="fa fa-plus"></i> Agregar
+          </span>
+    </button>
+  </div>
+  <div class="col-md-6 text-left">
+<!--    <button class="btn btn-warning" [disabled]="true" *ngIf="privileges.includes(3)">-->
+<!--          <span>-->
+<!--            <i class="fa fa-pencil"></i> Editar-->
+<!--          </span>-->
+<!--    </button>-->
+    <button class="btn btn-danger" [disabled]="selected.length > 1" *ngIf="privileges.includes(2)">
+          <span>
+            <i class="fa fa-trash"></i> Eliminar
+          </span>
+    </button>
+  </div>
+</div>
