@@ -8,8 +8,8 @@ export const environment = {
 
 export const systemName = 'MSPV';
 
-// export const API_URL = 'http://localhost/apps/1mspv/api/public/';
-export const API_URL = 'http://api-core.com/';
+export const API_URL = 'http://127.0.0.1:8000/';
+// export const API_URL = 'http://api-core.com/';
 
 export const APIKEY_GOOGLE = 'AIzaSyBJNkTbbr-tiqFwDV-ul_NC9ElozeQb_fk';
 

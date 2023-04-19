@@ -31,6 +31,11 @@ const routes: Routes = [
                     .then(m => m.systemConfigModule)
             },
             {
+                path: 'systemDocument',
+                loadChildren: () => import('./module/system-document/system-document.module')
+                    .then(m => m.systemDocumentModule)
+            },
+            {
                 path: 'systemIcon',
                 loadChildren: () => import('./module/system-icon/system-icon.module')
                     .then(m => m.systemIconModule)
@@ -64,6 +69,11 @@ const routes: Routes = [
                 path: 'systemRole',
                 loadChildren: () => import('./module/system-role/system-role.module')
                     .then(m => m.systemRoleModule)
+            },
+            {
+                path: 'systemTemplate',
+                loadChildren: () => import('./module/system-template/system-template.module')
+                    .then(m => m.systemTemplateModule)
             },
             {
                 path: 'systemTypeElement',

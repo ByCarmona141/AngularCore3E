@@ -58,7 +58,7 @@ export class systemActionReadComponent implements OnInit {
     }).then((result) => {
       if (!result.dismiss) {
         this.service.delete(id).subscribe(resp => {
-            Swal.fire('Eliminado', 'El registro se elimino correctamente!', 'error');
+            Swal.fire('Eliminado', 'El registro se elimino correctamente!', 'success');
             this.table.refreshTable();
           },
           error => {

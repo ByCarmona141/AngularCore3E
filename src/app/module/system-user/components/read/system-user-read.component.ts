@@ -35,10 +35,8 @@ export class systemUserReadComponent implements OnInit {
     'address',
     'phone',
     'area',
-    'id Office',
     'id System User Status',
     'id System Role',
-    'id Employee',
     'tries',
     'position',
     'skype'
@@ -72,7 +70,7 @@ export class systemUserReadComponent implements OnInit {
     }).then((result) => {
       if (!result.dismiss) {
         this.service.delete(id).subscribe(resp => {
-            Swal.fire('Eliminado', 'El registro se elimino correctamente!', 'error');
+            Swal.fire('Eliminado', 'El registro se elimino correctamente!', 'success');
             this.table.refreshTable();
           },
           error => {

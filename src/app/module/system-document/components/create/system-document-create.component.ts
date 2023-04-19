@@ -2,19 +2,20 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ValidatorsService } from '../../../../services/validators.service';
-import { systemIconDataForm } from "../../interface/system-icon-data-form";
-import { systemIconService } from '../../service/system-icon.service';
+import { systemDocumentDataForm } from "../../interface/system-document-data-form";
+import { systemDocumentService } from '../../service/system-document.service';
+import { systemTemplateService } from '../../../system-template/service/system-template.service';
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 import Swal from 'sweetalert2';
 
 
 @Component({
-  selector: 'app-system-icon-create',
-  templateUrl: './system-icon-create.component.html',
+  selector: 'app-system-document-create',
+  templateUrl: './system-document-create.component.html',
   styles: []
 })
 
-export class systemIconCreateComponent extends systemIconDataForm implements OnInit {
+export class systemDocumentCreateComponent extends systemDocumentDataForm implements OnInit {
   form: FormGroup;
   register = false;
   loading = true;
@@ -24,13 +25,16 @@ export class systemIconCreateComponent extends systemIconDataForm implements OnI
               private formBuilder: FormBuilder,
               private validators: ValidatorsService,
               private activeModal: NgbActiveModal,
-              private service: systemIconService) {
-    super();
+              private service: systemDocumentService,
+              private systemTemplateService: systemTemplateService) {
+    super(systemTemplateService);
   }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      name: [null, [Validators.minLength(1), Validators.maxLength(64)]]
+      idSystemTemplate: [null, []],
+      content: [null, [Validators.minLength(1), Validators.maxLength(4294967295)]],
+      dateCreate: [null, []]
     });
 
     this.loading = false;
@@ -70,6 +74,6 @@ export class systemIconCreateComponent extends systemIconDataForm implements OnI
       this.activeModal.dismiss('cancel');
       return;
     }
-    this.router.navigate(['/systemIcon']).then();
+    this.router.navigate(['/systemDocument']).then();
   }
 }

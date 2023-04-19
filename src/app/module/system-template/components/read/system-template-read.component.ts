@@ -2,17 +2,18 @@ import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from '../../../../services/auth.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { systemPrivilegesService } from '../../service/system-privileges.service';
+import { systemTemplateService } from '../../service/system-template.service';
+import { systemPrivilegesService as CelaPrivilegiosService } from '../../../system-privileges/service/system-privileges.service';
 import { TableComponent } from '../../../../components/shared/table/table.component';
 
 @Component({
-  selector: 'app-system-privileges',
-  templateUrl: './system-privileges-read.component.html',
+  selector: 'app-system-template',
+  templateUrl: './system-template-read.component.html',
   styleUrls: []
 })
-export class systemPrivilegesReadComponent implements OnInit {
+export class systemTemplateReadComponent implements OnInit {
   disabled = true;
-  serveSource = 'systemPrivileges';
+  serveSource = 'systemTemplate';
   serverFunction = 'readDataTable';
   selected = [];
   privilege = {
@@ -26,15 +27,25 @@ export class systemPrivilegesReadComponent implements OnInit {
   fields = [
     '#',
     'name',
-    'description'
+    'header',
+    'body',
+    'footer',
+    'orientation',
+    'size',
+    'header Spacing',
+    'footer Spacing',
+    'front Page',
+    'script',
+    'json'
   ];
 
   @ViewChild('table') table: TableComponent;
 
   constructor(public auth: AuthService,
               private router: Router,
-              private service: systemPrivilegesService) {
-    this.service.getPrivileges('systemPrivileges')
+              private service: systemTemplateService,
+              private privilegesService: CelaPrivilegiosService) {
+    this.privilegesService.getPrivileges('systemTemplate')
       .subscribe(data => {
         this.privilege = data;
       });
@@ -44,7 +55,7 @@ export class systemPrivilegesReadComponent implements OnInit {
   }
 
   update(id: number): void {
-    this.router.navigateByUrl('/systemPrivileges/update/' + id);
+    this.router.navigateByUrl('/systemTemplate/update/' + id);
   }
 
   delete(id: number): void {

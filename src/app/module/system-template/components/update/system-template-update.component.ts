@@ -2,19 +2,19 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ValidatorsService } from '../../../../services/validators.service';
-import { systemIconService } from '../../service/system-icon.service';
-import { systemIcon } from '../../interface/system-icon';
-import { systemIconDataForm } from "../../interface/system-icon-data-form";
+import { systemTemplateService } from '../../service/system-template.service';
+import { systemTemplate } from '../../interface/system-template';
+import { systemTemplateDataForm } from "../../interface/system-template-data-form";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-system-icon-update',
-  templateUrl: './system-icon-update.component.html',
+  selector: 'app-system-template-update',
+  templateUrl: './system-template-update.component.html',
   styles: []
 })
 
-export class systemIconUpdateComponent extends systemIconDataForm implements OnInit {
+export class systemTemplateUpdateComponent extends systemTemplateDataForm implements OnInit {
   form: FormGroup;
   loading = true;
   register = false;
@@ -22,21 +22,31 @@ export class systemIconUpdateComponent extends systemIconDataForm implements OnI
 
   @Input()
   id: number;
-  data: systemIcon;
+  data: systemTemplate;
 
   constructor(private activatedRoute: ActivatedRoute,
               private router: Router,
               private formBuilder: FormBuilder,
               private validators: ValidatorsService,
               private activeModal: NgbActiveModal,
-              private service: systemIconService) {
+              private service: systemTemplateService) {
 
     super();
   }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      name: [null, [Validators.minLength(1), Validators.maxLength(64)]]
+      name: [null, [Validators.minLength(1), Validators.maxLength(32)]],
+          header: [null, [Validators.minLength(1), Validators.maxLength(4294967295)]],
+          body: [null, [Validators.minLength(1), Validators.maxLength(4294967295)]],
+          footer: [null, [Validators.minLength(1), Validators.maxLength(4294967295)]],
+          orientation: [null, [Validators.minLength(1), Validators.maxLength(32)]],
+          size: [null, [Validators.minLength(1), Validators.maxLength(32)]],
+          headerSpacing: [null, []],
+          footerSpacing: [null, []],
+          frontPage: [null, []],
+          script: [null, [Validators.minLength(1), Validators.maxLength(65535)]],
+          json: [null, [Validators.minLength(1), Validators.maxLength(4294967295)]]
     });
 
     if (typeof this.id !== "undefined") {
@@ -55,6 +65,16 @@ export class systemIconUpdateComponent extends systemIconDataForm implements OnI
     this.data = data;
 
     this.form.controls.name.setValue(this.data.name);
+    this.form.controls.header.setValue(this.data.header);
+    this.form.controls.body.setValue(this.data.body);
+    this.form.controls.footer.setValue(this.data.footer);
+    this.form.controls.orientation.setValue(this.data.orientation);
+    this.form.controls.size.setValue(this.data.size);
+    this.form.controls.headerSpacing.setValue(this.data.headerSpacing);
+    this.form.controls.footerSpacing.setValue(this.data.footerSpacing);
+    this.form.controls.frontPage.setValue(this.data.frontPage);
+    this.form.controls.script.setValue(this.data.script);
+    this.form.controls.json.setValue(this.data.json);
 
     this.loading = false;
   }
@@ -90,6 +110,6 @@ export class systemIconUpdateComponent extends systemIconDataForm implements OnI
       this.activeModal.dismiss('cancel');
       return;
     }
-    this.router.navigate(['/systemIcon']).then();
+    this.router.navigate(['/systemTemplate']).then();
   }
 }

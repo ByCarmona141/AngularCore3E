@@ -1,0 +1,6 @@
+<app-create-template [loading]="loading" [register]="register" [form]="form" [modal]="modal" title="systemDocument"
+                     [create]="false" [id]="id" (submit)="submit($event)" (cancel)="return()">
+  <app-input-template [form]="form" [data]="idSystemTemplate"></app-input-template>
+        <app-input-template [form]="form" [data]="content"></app-input-template>
+        <app-input-template [form]="form" [data]="dateCreate"></app-input-template>
+</app-create-template>
