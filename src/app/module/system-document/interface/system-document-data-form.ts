@@ -26,9 +26,9 @@ export abstract class systemDocumentDataForm {
 
     protected constructor(systemTemplateService: systemTemplateService) {
         this.idSystemTemplate.items = systemTemplateService.combo();
-    this.idSystemTemplate.empty = true;
-    this.idSystemTemplate.add = true;
-    this.idSystemTemplate.component = systemTemplateCreateComponent;
+        this.idSystemTemplate.empty = true;
+        this.idSystemTemplate.add = true;
+        this.idSystemTemplate.component = systemTemplateCreateComponent;
     }
 
     abstract submit(values): void;

@@ -45,4 +45,11 @@ export class systemDocumentService {
     });
     return this.http.get(`${API_URL}api/systemDocument/combo`, { headers });
   }
+
+  report(id): Observable<any> {
+    const headers = new HttpHeaders({
+      Authorization: localStorage.getItem(systemName + 'Token')
+    });
+    return this.http.get(`${API_URL}api/systemDocument/report/${ id }`, { headers });
+  }
 }
