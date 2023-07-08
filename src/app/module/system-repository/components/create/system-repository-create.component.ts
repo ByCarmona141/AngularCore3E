@@ -33,7 +33,7 @@ export class systemRepositoryCreateComponent extends systemRepositoryDataForm im
       name: [null, [Validators.minLength(1), Validators.maxLength(512)]],
       description: [null, [Validators.minLength(1), Validators.maxLength(256)]],
       size: [null, []],
-      table: [null, [Validators.minLength(1), Validators.maxLength(64)]],
+      entity: [null, [Validators.minLength(1), Validators.maxLength(64)]],
       tuple: [null, [Validators.minLength(1), Validators.maxLength(64)]],
       route: [null, [Validators.minLength(1), Validators.maxLength(512)]]
     });

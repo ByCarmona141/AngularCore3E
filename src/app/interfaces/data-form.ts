@@ -3,6 +3,7 @@ export interface DataForm {
   label: string;
   type: string;
   message: string;
+  placeholder?: string;
   items?: any;
   empty?: boolean;
   emptyMessage?: string;
@@ -12,4 +13,6 @@ export interface DataForm {
   add?: boolean;
   service?: any;
   component?: any;
+  rows?: number;
+  cols?: number;
 }

@@ -2,21 +2,19 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ValidatorsService } from '../../../../services/validators.service';
-import { systemDocumentDataForm } from "../../interface/system-document-data-form";
-import { systemDocumentService } from '../../service/system-document.service';
-import { systemTemplateService } from '../../../system-template/service/system-template.service';
+import { systemOrientationDataForm } from "../../interface/system-orientation-data-form";
+import { systemOrientationService } from '../../service/system-orientation.service';
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 import Swal from 'sweetalert2';
-import {formatDate} from "@angular/common";
 
 
 @Component({
-  selector: 'app-system-document-create',
-  templateUrl: './system-document-create.component.html',
+  selector: 'app-system-orientation-create',
+  templateUrl: './system-orientation-create.component.html',
   styles: []
 })
 
-export class systemDocumentCreateComponent extends systemDocumentDataForm implements OnInit {
+export class systemOrientationCreateComponent extends systemOrientationDataForm implements OnInit {
   form: FormGroup;
   register = false;
   loading = true;
@@ -26,16 +24,14 @@ export class systemDocumentCreateComponent extends systemDocumentDataForm implem
               private formBuilder: FormBuilder,
               private validators: ValidatorsService,
               private activeModal: NgbActiveModal,
-              private service: systemDocumentService,
-              private systemTemplateService: systemTemplateService) {
-    super(systemTemplateService);
+              private service: systemOrientationService) {
+    super();
   }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      idSystemTemplate: [null, [Validators.required]],
-      content: [null, [Validators.minLength(1), Validators.maxLength(4294967295)]],
-      dateCreate: [null, [Validators.required]]
+      name: [null, [Validators.minLength(1), Validators.maxLength(32)]],
+      type: [null, [Validators.minLength(1), Validators.maxLength(32)]]
     });
 
     this.loading = false;
@@ -75,6 +71,6 @@ export class systemDocumentCreateComponent extends systemDocumentDataForm implem
       this.activeModal.dismiss('cancel');
       return;
     }
-    this.router.navigate(['/systemDocument']).then();
+    this.router.navigate(['/systemOrientation']).then();
   }
 }

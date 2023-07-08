@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class systemDocumentService {
+export class systemOrientationService {
 
   constructor(private http: HttpClient) {
   }
@@ -15,34 +15,34 @@ export class systemDocumentService {
     const headers = new HttpHeaders({
         Authorization: localStorage.getItem(systemName + 'Token')
     });
-    return this.http.post(`${API_URL}api/systemDocument`, formData, { headers });
+    return this.http.post(`${API_URL}api/systemOrientation`, formData, { headers });
   }
 
   update(formData: {}, id: number): Observable<any> {
     const headers = new HttpHeaders({
         Authorization: localStorage.getItem(systemName + 'Token')
     });
-    return this.http.put(`${API_URL}api/systemDocument/${id}`, formData, { headers });
+    return this.http.put(`${API_URL}api/systemOrientation/${id}`, formData, { headers });
   }
 
   delete(id: number): Observable<any> {
     const headers = new HttpHeaders({
         Authorization: localStorage.getItem(systemName + 'Token')
     });
-    return this.http.delete(`${API_URL}api/systemDocument/${id}`, { headers });
+    return this.http.delete(`${API_URL}api/systemOrientation/${id}`, { headers });
   }
 
   data(id): Observable<any> {
     const headers = new HttpHeaders({
         Authorization: localStorage.getItem(systemName + 'Token')
     });
-    return this.http.get(`${API_URL}api/systemDocument/${ id }`, { headers });
+    return this.http.get(`${API_URL}api/systemOrientation/${ id }`, { headers });
   }
 
   combo(): Observable<any> {
     const headers = new HttpHeaders({
         Authorization: localStorage.getItem(systemName + 'Token')
     });
-    return this.http.get(`${API_URL}api/systemDocument/combo`, { headers });
+    return this.http.get(`${API_URL}api/systemOrientation/combo`, { headers });
   }
 }

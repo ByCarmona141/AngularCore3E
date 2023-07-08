@@ -2,7 +2,7 @@ export interface systemRepository {
     name?: string;
   description?: string;
   size?: number;
-  table?: string;
+  entity?: string;
   tuple?: string;
   route?: string;
 }

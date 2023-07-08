@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ValidatorsService } from '../../../../services/validators.service';
 import { systemTemplateDataForm } from "../../interface/system-template-data-form";
 import { systemTemplateService } from '../../service/system-template.service';
+import { systemOrientationService } from '../../../system-orientation/service/system-orientation.service';
+import { systemSizeService } from '../../../system-size/service/system-size.service';
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 import Swal from 'sweetalert2';
 
@@ -24,23 +26,30 @@ export class systemTemplateCreateComponent extends systemTemplateDataForm implem
               private formBuilder: FormBuilder,
               private validators: ValidatorsService,
               private activeModal: NgbActiveModal,
-              private service: systemTemplateService) {
-    super();
+              private service: systemTemplateService,
+              private systemOrientationService: systemOrientationService,
+              private systemSizeService: systemSizeService) {
+    super(systemOrientationService,
+              systemSizeService);
   }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       name: [null, [Validators.minLength(1), Validators.maxLength(32)]],
+      json: [null, [Validators.minLength(1), Validators.maxLength(4294967295)]],
       header: [null, [Validators.minLength(1), Validators.maxLength(4294967295)]],
       body: [null, [Validators.minLength(1), Validators.maxLength(4294967295)]],
       footer: [null, [Validators.minLength(1), Validators.maxLength(4294967295)]],
-      orientation: [null, [Validators.minLength(1), Validators.maxLength(32)]],
-      size: [null, [Validators.minLength(1), Validators.maxLength(32)]],
-      headerSpacing: [null, []],
-      footerSpacing: [null, []],
-      frontPage: [null, []],
-      script: [null, [Validators.minLength(1), Validators.maxLength(65535)]],
-      json: [null, [Validators.minLength(1), Validators.maxLength(4294967295)]]
+      orientation: [null, [Validators.required]],
+      size: [null, [Validators.required]],
+      headerSpacing: [11, []],
+      footerSpacing: [4, []],
+      frontPage: [null, [Validators.minLength(1), Validators.maxLength(4294967295)]],
+      marginLeft: [0, []],
+      marginRight: [0, []],
+      marginTop: [0, []],
+      marginBottom: [0, []],
+      script: [null, [Validators.minLength(1), Validators.maxLength(65535)]]
     });
 
     this.loading = false;
@@ -76,7 +85,7 @@ export class systemTemplateCreateComponent extends systemTemplateDataForm implem
   }
 
   return(): void {
-    if (this.modal){
+    if (this.modal) {
       this.activeModal.dismiss('cancel');
       return;
     }

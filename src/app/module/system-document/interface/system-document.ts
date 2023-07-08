@@ -1,5 +1,5 @@
 export interface systemDocument {
-    idSystemTemplate?: number;
+    idSystemTemplate: number;
   content?: any;
   dateCreate?: any;
 }

@@ -16,6 +16,10 @@ export class InputTemplateComponent implements OnInit {
     readonly = false;
     add = false;
 
+    // Para el textarea
+    cols = 5;
+    rows = 5;
+
     constructor(private modalService: NgbModal) {
     }
 
@@ -39,6 +43,17 @@ export class InputTemplateComponent implements OnInit {
 
             if(this.data.add){
                 this.add = this.data.add;
+            }
+        }
+
+        // Si el componente es un textarea
+        if (this.data.type === 'textarea') {
+            if (this.data.cols) {
+                this.cols = this.data.cols;
+            }
+
+            if (this.data.rows) {
+                this.rows = this.data.rows;
             }
         }
     }

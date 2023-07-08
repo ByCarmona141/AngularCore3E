@@ -1,13 +1,17 @@
 export interface systemTemplate {
-    name?: string;
-  header?: any;
-  body?: any;
-  footer?: any;
-  orientation?: string;
-  size?: string;
-  headerSpacing?: number;
-  footerSpacing?: number;
-  frontPage?: number;
-  script?: string;
-  json?: any;
+    name: string;
+    json?: any;
+    header?: any;
+    body: any;
+    footer?: any;
+    orientation: number;
+    size: number;
+    headerSpacing?: number;
+    footerSpacing?: number;
+    frontPage?: any;
+    marginLeft?: number;
+    marginRight?: number;
+    marginTop?: number;
+    marginBottom?: number;
+    script?: string;
 }

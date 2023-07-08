@@ -9,6 +9,7 @@
       <ng-container *ngSwitchCase="'date'" [ngTemplateOutlet]="date"></ng-container>
       <ng-container *ngSwitchCase="'file'" [ngTemplateOutlet]="file"></ng-container>
       <ng-container *ngSwitchCase="'editor'" [ngTemplateOutlet]="editor"></ng-container>
+      <ng-container *ngSwitchCase="'textarea'" [ngTemplateOutlet]="textarea"></ng-container>
       <ng-container *ngSwitchDefault [ngTemplateOutlet]="input"></ng-container>
     </div>
     <small *ngIf="noValid(data.field)" class="text-danger">
@@ -43,7 +44,7 @@
     <input class="form-control"
            [type]="data.type"
            [readonly]="readonly"
-           [placeholder]="data.label"
+           [placeholder]="(data.placeholder !== undefined) ? data.placeholder : data.label"
            [formControlName]="data.field"
            [ngClass]="{ 'is-valid': valid(data.field),
                             'is-invalid': noValid(data.field) }">
@@ -53,7 +54,7 @@
     <input class="form-control"
            [type]="data.type"
            [readonly]="readonly"
-           [placeholder]="data.label"
+           [placeholder]="(data.placeholder !== undefined) ? data.placeholder : data.label"
            [ngClass]="{ 'is-valid': valid(data.field),
                             'is-invalid': noValid(data.field) }"
            (change)="onFileChange($event)"
@@ -65,7 +66,7 @@
       <input class="form-control"
              #d="ngbDatepicker"
              ngbDatepicker
-             [placeholder]="data.label"
+             [placeholder]="(data.placeholder !== undefined) ? data.placeholder : data.label"
              [readonly]="readonly"
              [formControlName]="data.field"
              [ngClass]="{ 'is-valid': valid(data.field),
@@ -79,6 +80,15 @@
   </ng-template>
   <ng-template #editor>
     <app-tinymce [formControlName]="data.field"></app-tinymce>
+  </ng-template>
+
+  <ng-template #textarea>
+    <textarea class="form-control"
+              [readonly]="readonly"
+              [placeholder]="(data.placeholder !== undefined) ? data.placeholder : data.label"
+              [formControlName]="data.field"
+              [cols]="data.cols"
+              [rows]="data.rows"></textarea>
   </ng-template>
 </div>
 

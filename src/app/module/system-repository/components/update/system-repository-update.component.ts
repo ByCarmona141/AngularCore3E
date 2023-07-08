@@ -39,7 +39,7 @@ export class systemRepositoryUpdateComponent extends systemRepositoryDataForm im
       name: [null, [Validators.minLength(1), Validators.maxLength(512)]],
           description: [null, [Validators.minLength(1), Validators.maxLength(256)]],
           size: [null, []],
-          table: [null, [Validators.minLength(1), Validators.maxLength(64)]],
+          entity: [null, [Validators.minLength(1), Validators.maxLength(64)]],
           tuple: [null, [Validators.minLength(1), Validators.maxLength(64)]],
           route: [null, [Validators.minLength(1), Validators.maxLength(512)]]
     });
@@ -62,7 +62,7 @@ export class systemRepositoryUpdateComponent extends systemRepositoryDataForm im
     this.form.controls.name.setValue(this.data.name);
     this.form.controls.description.setValue(this.data.description);
     this.form.controls.size.setValue(this.data.size);
-    this.form.controls.table.setValue(this.data.table);
+    this.form.controls.entity.setValue(this.data.entity);
     this.form.controls.tuple.setValue(this.data.tuple);
     this.form.controls.route.setValue(this.data.route);
 

@@ -20,10 +20,10 @@ export abstract class systemRepositoryDataForm {
     label: 'Size',
     message: 'Ingrese un numero'
   };
-  table: DataForm = {
-    field: 'table',
+  entity: DataForm = {
+    field: 'entity',
     type: 'text',
-    label: 'Table',
+    label: 'Entity',
     message: 'Ingrese minimo 1 letra y maximo 64'
   };
   tuple: DataForm = {

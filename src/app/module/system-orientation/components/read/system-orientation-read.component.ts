@@ -2,18 +2,18 @@ import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from '../../../../services/auth.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { systemTemplateService } from '../../service/system-template.service';
+import { systemOrientationService } from '../../service/system-orientation.service';
 import { systemPrivilegesService as CelaPrivilegiosService } from '../../../system-privileges/service/system-privileges.service';
 import { TableComponent } from '../../../../components/shared/table/table.component';
 
 @Component({
-  selector: 'app-system-template',
-  templateUrl: './system-template-read.component.html',
+  selector: 'app-system-orientation',
+  templateUrl: './system-orientation-read.component.html',
   styleUrls: []
 })
-export class systemTemplateReadComponent implements OnInit {
+export class systemOrientationReadComponent implements OnInit {
   disabled = true;
-  serveSource = 'systemTemplate';
+  serveSource = 'systemOrientation';
   serverFunction = 'readDataTable';
   selected = [];
   privilege = {
@@ -27,25 +27,16 @@ export class systemTemplateReadComponent implements OnInit {
   fields = [
     '#',
     'name',
-    'json',
-    'header',
-    'body',
-    'footer',
-    'orientation',
-    'size',
-    'header Spacing',
-    'footer Spacing',
-    'front Page',
-    'script'
+    'type'
   ];
 
   @ViewChild('table') table: TableComponent;
 
   constructor(public auth: AuthService,
               private router: Router,
-              private service: systemTemplateService,
+              private service: systemOrientationService,
               private privilegesService: CelaPrivilegiosService) {
-    this.privilegesService.getPrivileges('systemTemplate')
+    this.privilegesService.getPrivileges('systemOrientation')
       .subscribe(data => {
         this.privilege = data;
       });
@@ -55,7 +46,7 @@ export class systemTemplateReadComponent implements OnInit {
   }
 
   update(id: number): void {
-    this.router.navigateByUrl('/systemTemplate/update/' + id);
+    this.router.navigateByUrl('/systemOrientation/update/' + id);
   }
 
   delete(id: number): void {

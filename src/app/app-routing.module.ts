@@ -51,6 +51,11 @@ const routes: Routes = [
                     .then(m => m.systemMenuModule)
             },
             {
+                path: 'systemOrientation',
+                loadChildren: () => import('./module/system-orientation/system-orientation.module')
+                    .then(m => m.systemOrientationModule)
+            },
+            {
                 path: 'systemPrivileges',
                 loadChildren: () => import('./module/system-privileges/system-privileges.module')
                     .then(m => m.systemPrivilegesModule)
@@ -69,6 +74,11 @@ const routes: Routes = [
                 path: 'systemRole',
                 loadChildren: () => import('./module/system-role/system-role.module')
                     .then(m => m.systemRoleModule)
+            },
+            {
+                path: 'systemSize',
+                loadChildren: () => import('./module/system-size/system-size.module')
+                    .then(m => m.systemSizeModule)
             },
             {
                 path: 'systemTemplate',
@@ -90,6 +100,7 @@ const routes: Routes = [
                 loadChildren: () => import('./module/system-user-status/system-user-status.module')
                     .then(m => m.systemUserStatusModule)
             },
+
         ]
     },
     {
