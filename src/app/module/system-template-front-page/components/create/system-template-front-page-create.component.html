@@ -1,0 +1,15 @@
+<app-create-template [loading]="loading" [register]="register" [form]="form" [modal]="modal" title="systemTemplateFrontPage"
+                     (submit)="submit($event)" (cancel)="return()">
+  <app-input-template [form]="form" [data]="name"></app-input-template>
+      <app-input-template [form]="form" [data]="header"></app-input-template>
+      <app-input-template [form]="form" [data]="body"></app-input-template>
+      <app-input-template [form]="form" [data]="footer"></app-input-template>
+      <app-input-template [form]="form" [data]="idSystemOrientation"></app-input-template>
+      <app-input-template [form]="form" [data]="idSystemSize"></app-input-template>
+      <app-input-template [form]="form" [data]="headerSpacing"></app-input-template>
+      <app-input-template [form]="form" [data]="footerSpacing"></app-input-template>
+      <app-input-template [form]="form" [data]="marginLeft"></app-input-template>
+      <app-input-template [form]="form" [data]="marginRight"></app-input-template>
+      <app-input-template [form]="form" [data]="marginTop"></app-input-template>
+      <app-input-template [form]="form" [data]="marginBottom"></app-input-template>
+</app-create-template>
