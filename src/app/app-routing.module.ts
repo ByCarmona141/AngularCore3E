@@ -86,6 +86,11 @@ const routes: Routes = [
                     .then(m => m.systemTemplateModule)
             },
             {
+                path: 'systemTemplateFrontPage',
+                loadChildren: () => import('./module/system-template-front-page/system-template-front-page.module')
+                    .then(m => m.systemTemplateFrontPageModule)
+            },
+            {
                 path: 'systemTypeElement',
                 loadChildren: () => import('./module/system-type-element/system-type-element.module')
                     .then(m => m.systemTypeElementModule)

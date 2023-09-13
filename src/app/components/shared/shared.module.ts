@@ -10,9 +10,10 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { TinymceModule } from 'angular2-tinymce';
 import { ActionButtonsComponent } from './action-buttons/action-buttons.component';
 import { CreateTemplateComponent } from './create-template/create-template.component';
+import {InputJsonComponent} from "./input-json/input-json.component";
 
 @NgModule({
-    declarations: [TableComponent, InputTemplateComponent, DomseguroPipe, ActionButtonsComponent, CreateTemplateComponent],
+    declarations: [TableComponent, InputTemplateComponent, InputJsonComponent, DomseguroPipe, ActionButtonsComponent, CreateTemplateComponent],
     imports: [
         CommonModule,
         DataTablesModule,
@@ -24,6 +25,7 @@ import { CreateTemplateComponent } from './create-template/create-template.compo
     exports: [
         TableComponent,
         InputTemplateComponent,
+        InputJsonComponent,
         DomseguroPipe,
         NgSelectModule,
         ActionButtonsComponent,

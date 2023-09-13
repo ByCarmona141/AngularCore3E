@@ -5,6 +5,7 @@ import { ValidatorsService } from '../../../../services/validators.service';
 import { systemTemplateService } from '../../service/system-template.service';
 import { systemOrientationService } from '../../../system-orientation/service/system-orientation.service';
 import { systemSizeService } from '../../../system-size/service/system-size.service';
+import { systemTemplateFrontPageService } from "../../../system-template-front-page/service/system-template-front-page.service";
 import { systemTemplate } from '../../interface/system-template';
 import { systemTemplateDataForm } from "../../interface/system-template-data-form";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
@@ -32,10 +33,10 @@ export class systemTemplateUpdateComponent extends systemTemplateDataForm implem
               private activeModal: NgbActiveModal,
               private service: systemTemplateService,
               private systemOrientationService: systemOrientationService,
-              private systemSizeService: systemSizeService) {
+              private systemSizeService: systemSizeService,
+              private systemTemplateFrontPageService: systemTemplateFrontPageService) {
 
-    super(systemOrientationService,
-              systemSizeService);
+    super(systemOrientationService, systemSizeService, systemTemplateFrontPageService);
   }
 
   ngOnInit(): void {
@@ -45,16 +46,17 @@ export class systemTemplateUpdateComponent extends systemTemplateDataForm implem
       header: [null, [Validators.minLength(1), Validators.maxLength(4294967295)]],
       body: [null, [Validators.minLength(1), Validators.maxLength(4294967295)]],
       footer: [null, [Validators.minLength(1), Validators.maxLength(4294967295)]],
-      orientation: [null, [Validators.required]],
-      size: [null, [Validators.required]],
+      idSystemOrientation: [null, [Validators.required]],
+      idSystemSize: [null, [Validators.required]],
       headerSpacing: [null, []],
       footerSpacing: [null, []],
-      frontPage: [null, [Validators.minLength(1), Validators.maxLength(4294967295)]],
+      idSystemFrontPage: [null, [Validators.minLength(1), Validators.maxLength(4294967295)]],
       marginLeft: [null, []],
       marginRight: [null, []],
       marginTop: [null, []],
       marginBottom: [null, []],
-      script: [null, [Validators.minLength(1), Validators.maxLength(65535)]]
+      script: [null, [Validators.minLength(1), Validators.maxLength(65535)]],
+      paginate: [null, [Validators.required]]
     });
 
     if (typeof this.id !== "undefined") {
@@ -77,16 +79,17 @@ export class systemTemplateUpdateComponent extends systemTemplateDataForm implem
     this.form.controls.header.setValue(this.data.header);
     this.form.controls.body.setValue(this.data.body);
     this.form.controls.footer.setValue(this.data.footer);
-    this.form.controls.orientation.setValue(this.data.orientation);
-    this.form.controls.size.setValue(this.data.size);
+    this.form.controls.idSystemOrientation.setValue(this.data.idSystemOrientation);
+    this.form.controls.idSystemSize.setValue(this.data.idSystemSize);
     this.form.controls.headerSpacing.setValue(this.data.headerSpacing);
     this.form.controls.footerSpacing.setValue(this.data.footerSpacing);
-    this.form.controls.frontPage.setValue(this.data.frontPage);
+    this.form.controls.idSystemFrontPage.setValue(this.data.idSystemFrontPage);
     this.form.controls.marginLeft.setValue(this.data.marginLeft);
     this.form.controls.marginRight.setValue(this.data.marginRight);
     this.form.controls.marginTop.setValue(this.data.marginTop);
     this.form.controls.marginBottom.setValue(this.data.marginBottom);
     this.form.controls.script.setValue(this.data.script);
+    this.form.controls.paginate.setValue(this.data.paginate);
 
     this.loading = false;
   }

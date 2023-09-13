@@ -3,6 +3,12 @@ import { systemOrientationService } from '../../system-orientation/service/syste
 import { systemOrientationCreateComponent } from '../../system-orientation/components/create/system-orientation-create.component';
 import { systemSizeService } from '../../system-size/service/system-size.service';
 import { systemSizeCreateComponent } from '../../system-size/components/create/system-size-create.component';
+import {
+  systemTemplateFrontPageService
+} from "../../system-template-front-page/service/system-template-front-page.service";
+import {
+  systemTemplateFrontPageCreateComponent
+} from "../../system-template-front-page/components/create/system-template-front-page-create.component";
 
 export abstract class systemTemplateDataForm {
 
@@ -44,14 +50,14 @@ export abstract class systemTemplateDataForm {
     rows: 5,
     message: 'Ingrese minimo 1 letra y maximo 4294967295'
   };
-  orientation: DataForm = {
-    field: 'orientation',
+  idSystemOrientation: DataForm = {
+    field: 'idSystemOrientation',
     type: 'select',
     label: 'Orientation',
     message: 'Ingrese un systemOrientation'
   };
-  size: DataForm = {
-    field: 'size',
+  idSystemSize: DataForm = {
+    field: 'idSystemSize',
     type: 'select',
     label: 'Size',
     message: 'Ingrese un systemSize'
@@ -68,13 +74,11 @@ export abstract class systemTemplateDataForm {
     label: 'Footer Spacing',
     message: 'Ingrese un numero'
   };
-  frontPage: DataForm = {
-    field: 'frontPage',
-    type: 'textarea',
+  idSystemFrontPage: DataForm = {
+    field: 'idSystemFrontPage',
+    type: 'select',
     label: 'Front Page',
-    cols: 5,
-    rows: 5,
-    message: 'Ingrese minimo 1 letra y maximo 4294967295'
+    message: 'Ingrese un FrontPage'
   };
   marginLeft: DataForm = {
     field: 'marginLeft',
@@ -108,17 +112,28 @@ export abstract class systemTemplateDataForm {
     rows: 5,
     message: 'Ingrese minimo 1 letra y maximo 65535'
   };
+  paginate: DataForm = {
+    field: 'paginate',
+    type: 'number',
+    label: 'Paginate',
+    message: 'Ingrese un numero'
+  };
 
-    protected constructor(systemOrientationService: systemOrientationService, systemSizeService: systemSizeService) {
-        this.orientation.items = systemOrientationService.combo();
-        this.orientation.empty = true;
-        this.orientation.add = true;
-        this.orientation.component = systemOrientationCreateComponent;
+    protected constructor(systemOrientationService: systemOrientationService, systemSizeService: systemSizeService, systemTemplateFrontPageService: systemTemplateFrontPageService) {
+        this.idSystemOrientation.items = systemOrientationService.combo();
+        this.idSystemOrientation.empty = true;
+        this.idSystemOrientation.add = true;
+        this.idSystemOrientation.component = systemOrientationCreateComponent;
 
-        this.size.items = systemSizeService.combo();
-        this.size.empty = true;
-        this.size.add = true;
-        this.size.component = systemSizeCreateComponent;
+        this.idSystemSize.items = systemSizeService.combo();
+        this.idSystemSize.empty = true;
+        this.idSystemSize.add = true;
+        this.idSystemSize.component = systemSizeCreateComponent;
+
+        this.idSystemFrontPage.items = systemTemplateFrontPageService.combo();
+        this.idSystemFrontPage.empty = true;
+        this.idSystemFrontPage.add = true;
+        this.idSystemFrontPage.component = systemTemplateFrontPageCreateComponent;
     }
 
     abstract submit(values): void;

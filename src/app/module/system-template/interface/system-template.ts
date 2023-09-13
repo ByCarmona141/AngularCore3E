@@ -4,14 +4,15 @@ export interface systemTemplate {
     header?: any;
     body: any;
     footer?: any;
-    orientation: number;
-    size: number;
+    idSystemOrientation: number;
+    idSystemSize: number;
     headerSpacing?: number;
     footerSpacing?: number;
-    frontPage?: any;
+    idSystemFrontPage?: number;
     marginLeft?: number;
     marginRight?: number;
     marginTop?: number;
     marginBottom?: number;
     script?: string;
+    paginate?: number;
 }

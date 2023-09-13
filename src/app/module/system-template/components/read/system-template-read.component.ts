@@ -35,8 +35,7 @@ export class systemTemplateReadComponent implements OnInit {
     'size',
     'header Spacing',
     'footer Spacing',
-    'front Page',
-    'script'
+    'front Page'
   ];
 
   @ViewChild('table') table: TableComponent;

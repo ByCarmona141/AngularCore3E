@@ -45,4 +45,11 @@ export class systemTemplateFrontPageService {
     });
     return this.http.get(`${API_URL}api/systemTemplateFrontPage/combo`, { headers });
   }
+
+  report(id): Observable<any> {
+    const headers = new HttpHeaders({
+      Authorization: localStorage.getItem(systemName + 'Token')
+    });
+    return this.http.get(`${API_URL}api/systemTemplateFrontPage/report/${ id }`, { headers });
+  }
 }

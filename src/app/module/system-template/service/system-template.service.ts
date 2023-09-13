@@ -39,6 +39,13 @@ export class systemTemplateService {
     return this.http.get(`${API_URL}api/systemTemplate/${ id }`, { headers });
   }
 
+  json(id): Observable<any> {
+    const headers = new HttpHeaders({
+        Authorization: localStorage.getItem(systemName + 'Token')
+    });
+    return this.http.get(`${API_URL}api/systemTemplate/json/${ id }`, { headers });
+  }
+
   combo(): Observable<any> {
     const headers = new HttpHeaders({
         Authorization: localStorage.getItem(systemName + 'Token')

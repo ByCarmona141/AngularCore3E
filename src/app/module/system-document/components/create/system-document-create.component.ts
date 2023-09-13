@@ -7,7 +7,6 @@ import { systemDocumentService } from '../../service/system-document.service';
 import { systemTemplateService } from '../../../system-template/service/system-template.service';
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 import Swal from 'sweetalert2';
-import {formatDate} from "@angular/common";
 
 
 @Component({
@@ -21,6 +20,9 @@ export class systemDocumentCreateComponent extends systemDocumentDataForm implem
   register = false;
   loading = true;
   @Input() modal = false;
+  actual: any = new Date();
+  zonaHoraria: any = '';
+  keys: any[] = [];
 
   constructor(private router: Router,
               private formBuilder: FormBuilder,
@@ -32,10 +34,34 @@ export class systemDocumentCreateComponent extends systemDocumentDataForm implem
   }
 
   ngOnInit(): void {
+    // Obtenemos la zona horaria
+    this.zonaHoraria = Intl.DateTimeFormat().resolvedOptions();
+
+    // Establecemos la zona horaria
+    this.actual.timezone = this.zonaHoraria.timeZone;
+
+    // Formato de Fecha 2010-12-28T14:57:00
+    this.actual = this.actual.toISOString();
+    this.actual = this.actual.substring(0, this.actual.length - 5);
+
     this.form = this.formBuilder.group({
       idSystemTemplate: [null, [Validators.required]],
       content: [null, [Validators.minLength(1), Validators.maxLength(4294967295)]],
-      dateCreate: [null, [Validators.required]]
+      dateCreate: [this.actual, [Validators.required]]
+    });
+
+    // Si el select cambia de seleccion
+    this.form.get('idSystemTemplate').valueChanges.subscribe(value => {
+      // Limpiamos el arreglo
+      this.keys = [];
+      // Recorremos el json
+      this.systemTemplateService.json(value).subscribe(resp => {
+        // Recorremos la respuesta con el json
+        resp['hydra:member'].forEach(key => {
+          // Guardamos en un arreglo los objetos
+          this.keys.push(key);
+        });
+      });
     });
 
     this.loading = false;

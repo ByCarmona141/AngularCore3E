@@ -1,0 +1,98 @@
+<div class="form-group row" [formGroup]="form">
+  <label *ngIf="data.label != ''" class="col col-form-label col-md-2"
+         [ngClass]="{ 'text-success': valid(data.id),
+                          'text-danger': noValid(data.id) }">
+    {{ data.label }}: <font color="red" *ngIf="isRequired(data.id)">*</font></label>
+  <div class="col-12 col-md-10">
+    <div [ngSwitch]="data.type">
+      <ng-container *ngSwitchCase="'checkbox'" [ngTemplateOutlet]="checkbox"></ng-container>
+      <ng-container *ngSwitchCase="'select'" [ngTemplateOutlet]="select"></ng-container>
+      <ng-container *ngSwitchCase="'date'" [ngTemplateOutlet]="date"></ng-container>
+      <ng-container *ngSwitchCase="'file'" [ngTemplateOutlet]="file"></ng-container>
+      <ng-container *ngSwitchCase="'editor'" [ngTemplateOutlet]="editor"></ng-container>
+      <ng-container *ngSwitchCase="'textarea'" [ngTemplateOutlet]="textarea"></ng-container>
+      <ng-container *ngSwitchDefault [ngTemplateOutlet]="input"></ng-container>
+    </div>
+    <small *ngIf="noValid(data.id)" class="text-danger">
+      {{ data.message }}
+    </small>
+  </div>
+
+  <ng-template #checkbox>
+    <input class="form-check-input"
+           [type]="data.type"
+           [readonly]="readonly"
+           [placeholder]="(data.placeholder !== undefined) ? data.placeholder : data.label"
+           [formControlName]="data.id"
+           [ngClass]="{ 'is-valid': valid(data.id),
+                            'is-invalid': noValid(data.id) }">
+  </ng-template>
+
+  <ng-template #select>
+    <div class="row">
+      <ng-select [formControlName]="data.id"
+                 [multiple]="multiple"
+                 [readonly]="readonly"
+                 [ngClass]="{ 'is-valid': valid(data.id),
+                           'is-invalid': noValid(data.id) }"
+                 [placeholder]="emptyMessage">
+        <ng-option *ngFor="let item of options" [value]="item[0]">
+          <i *ngIf="data.icon" class="{{ item[1] }}"></i>
+          {{ item[1] }}
+        </ng-option>
+      </ng-select>
+    </div>
+  </ng-template>
+
+  <ng-template #input>
+    <input class="form-control"
+           [type]="data.type"
+           [readonly]="readonly"
+           [placeholder]="(data.placeholder !== undefined) ? data.placeholder : data.label"
+           [formControlName]="data.id"
+           [ngClass]="{ 'is-valid': valid(data.id),
+                            'is-invalid': noValid(data.id) }">
+  </ng-template>
+
+  <ng-template #file>
+    <input class="form-control"
+           [type]="data.type"
+           [readonly]="readonly"
+           [placeholder]="(data.placeholder !== undefined) ? data.placeholder : data.label"
+           [ngClass]="{ 'is-valid': valid(data.field),
+                            'is-invalid': noValid(data.field) }"
+           (change)="onFileChange($event)"
+           permitidos>
+  </ng-template>
+
+  <ng-template #date>
+    <div class="input-group">
+      <input class="form-control"
+             #d="ngbDatepicker"
+             ngbDatepicker
+             [placeholder]="(data.placeholder !== undefined) ? data.placeholder : data.label"
+             [readonly]="readonly"
+             [formControlName]="data.field"
+             [ngClass]="{ 'is-valid': valid(data.field),
+                            'is-invalid': noValid(data.field) }">
+      <div class="input-group-append">
+                  <span class="input-group-text" (click)="d.toggle()">
+                    <i class="fa fa-calendar"></i>
+                  </span>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template #editor>
+    <app-tinymce [formControlName]="data.field"></app-tinymce>
+  </ng-template>
+
+  <ng-template #textarea>
+    <textarea class="form-control"
+              [readonly]="readonly"
+              [placeholder]="(data.placeholder !== undefined) ? data.placeholder : data.label"
+              [formControlName]="data.field"
+              [cols]="data.cols"
+              [rows]="data.rows"></textarea>
+  </ng-template>
+</div>
+

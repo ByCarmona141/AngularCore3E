@@ -33,7 +33,8 @@ export class systemTemplateFrontPageReadComponent implements OnInit {
     'orientation',
     'size',
     'header Spacing',
-    'footer Spacing'
+    'footer Spacing',
+    'report'
   ];
 
   @ViewChild('table') table: TableComponent;
@@ -78,6 +79,24 @@ export class systemTemplateFrontPageReadComponent implements OnInit {
     });
   }
 
+  report(id: number): void {
+    // Mandamos el id para el reporte
+    this.service.report(id).subscribe(resp => {
+      console.log(id);
+      console.log(resp);
+
+      // Abrimos el pdf en otra ventana
+      window.open('http://' + resp['hydra:member'][3] + 'public/' + resp['hydra:member'][1], '_blank');
+    }, error => {
+      // Si hay un error indicamos que hubo un error con un modal
+      Swal.fire(
+          'ERROR!',
+          'Hubo un error al generar el reporte, intente de nuevo',
+          'error'
+      );
+    });
+  }
+
   @HostListener('click', ['$event'])
   onClick(ev): void {
     let input = ev.target;
@@ -93,6 +112,10 @@ export class systemTemplateFrontPageReadComponent implements OnInit {
 
     if (classTag.includes('delete')) {
       this.delete(input.attributes.index.value);
+    }
+
+    if (classTag.includes('report')) {
+      this.report(input.attributes.index.value);
     }
   }
 }

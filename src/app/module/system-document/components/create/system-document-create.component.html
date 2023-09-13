@@ -1,6 +1,14 @@
 <app-create-template [loading]="loading" [register]="register" [form]="form" [modal]="modal" title="systemDocument"
                      (submit)="submit($event)" (cancel)="return()">
-  <app-input-template [form]="form" [data]="idSystemTemplate"></app-input-template>
-      <app-input-template [form]="form" [data]="content"></app-input-template>
-      <app-input-template [form]="form" [data]="dateCreate"></app-input-template>
+    <app-input-template [form]="form" [data]="idSystemTemplate"></app-input-template>
+    <app-input-template [form]="form" [data]="dateCreate"></app-input-template>
+    <hr>
+    <app-input-template [form]="form" [data]="content"></app-input-template>
+
+    <ng-container *ngIf="this.keys.length > 0">
+        <div *ngFor="let key of this.keys">
+            <h1>{{ key | json }}</h1>
+            <app-input-json [form]="form" [data]="key"></app-input-json>
+        </div>
+    </ng-container>
 </app-create-template>

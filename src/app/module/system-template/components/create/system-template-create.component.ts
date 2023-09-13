@@ -6,6 +6,7 @@ import { systemTemplateDataForm } from "../../interface/system-template-data-for
 import { systemTemplateService } from '../../service/system-template.service';
 import { systemOrientationService } from '../../../system-orientation/service/system-orientation.service';
 import { systemSizeService } from '../../../system-size/service/system-size.service';
+import { systemTemplateFrontPageService } from "../../../system-template-front-page/service/system-template-front-page.service";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 import Swal from 'sweetalert2';
 
@@ -28,9 +29,9 @@ export class systemTemplateCreateComponent extends systemTemplateDataForm implem
               private activeModal: NgbActiveModal,
               private service: systemTemplateService,
               private systemOrientationService: systemOrientationService,
-              private systemSizeService: systemSizeService) {
-    super(systemOrientationService,
-              systemSizeService);
+              private systemSizeService: systemSizeService,
+              private systemTemplateFrontPageService: systemTemplateFrontPageService) {
+    super(systemOrientationService, systemSizeService, systemTemplateFrontPageService);
   }
 
   ngOnInit(): void {
@@ -40,16 +41,17 @@ export class systemTemplateCreateComponent extends systemTemplateDataForm implem
       header: [null, [Validators.minLength(1), Validators.maxLength(4294967295)]],
       body: [null, [Validators.minLength(1), Validators.maxLength(4294967295)]],
       footer: [null, [Validators.minLength(1), Validators.maxLength(4294967295)]],
-      orientation: [null, [Validators.required]],
-      size: [null, [Validators.required]],
+      idSystemOrientation: [null, [Validators.required]],
+      idSystemSize: [null, [Validators.required]],
       headerSpacing: [11, []],
       footerSpacing: [4, []],
-      frontPage: [null, [Validators.minLength(1), Validators.maxLength(4294967295)]],
+      idSystemFrontPage: [null, []],
       marginLeft: [0, []],
       marginRight: [0, []],
       marginTop: [0, []],
       marginBottom: [0, []],
-      script: [null, [Validators.minLength(1), Validators.maxLength(65535)]]
+      script: [null, [Validators.minLength(1), Validators.maxLength(65535)]],
+      paginate: [0, []]
     });
 
     this.loading = false;
